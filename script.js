@@ -5,48 +5,21 @@ const fruit = ['Apple', 'Apricot', 'Avocado 🥑', 'Banana', 'Bilberry', 'Blackb
 
 function search(str) {
 	// function that searches through fruit variable for values that contain the string and returns and array of strings.
+	
 	let results = [];
 	// results is the returned array.
+
 	if(str === ''){
 		//checks for empty string and exits function if true.
 		return results;
 	}
 
-	let splitStr = str.split('');
-	// splits the string entered into the function into characters or single letter long substrings.
-
 	for (let i = 0; i < fruit.length; i++){
 		// loops through fruit array.
-		let splitFruit = fruit[i].split('');
-		// splits fruit value string into character or single letter long substrings.
-		let match = false;
-		// boolian used to confirm a match.
-
-		for(let splitFruitIndex = 0; splitFruitIndex < splitFruit.length; splitFruitIndex++){
-			// loop to iterate through the substring of fruit (splitFruit)
-			splitFruit[splitFruitIndex] = splitFruit[splitFruitIndex].toLowerCase();
-			splitStr[0] = splitStr[0].toLowerCase();
-
-			if(splitFruit[splitFruitIndex] === splitStr[0]){
-				// checks for existance of the first letter in the entered string is in the current iteration of fruit letter/
-				for(let splitStrIndex = 0; splitStrIndex < splitStr.length; splitStrIndex++){
-					// loop to iterate through the substring of Str (splitStr) the entered string.  This is to check for subsequent matches after the first letter match.
-					splitStr[splitStrIndex] = splitStr[splitStrIndex].toLowerCase();
-				
-					if(splitFruit[splitFruitIndex + splitStrIndex] !== splitStr[splitStrIndex]){
-						//if subsequent letter does not match, match is false, loop ends
-						match = false;
-						splitStrIndex = splitStr.length;
-					}else{
-						//if subsequent letter does match, match is currently true, loop continues
-						match = true;
-					}
-				}
-			}
-		}
-		if(match === true){
-			// if match is true, fruit is added to result
-			results.push(fruit[i]);
+		if(fruit[i].toLowerCase().includes(str.toLowerCase()) === true){
+			// convert fruit value and input string to lower case and check if fruit value includes input string
+			// push fruits that match search to result
+			results.push(fruit[i])
 		}
 		if(results.length === 8){
 			// if 8 matches are true, return result and end function from further searching.
